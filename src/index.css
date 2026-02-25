@@ -1,7 +1,2 @@
 @import "tailwindcss";
 @plugin "daisyui";
-
-:root {
-  --card: #f7f7f7;
-  --primary: #154a31;
-}
