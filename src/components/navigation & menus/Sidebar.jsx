@@ -12,7 +12,7 @@ import SidebarLinks from "./SidebarLinks";
 
 const Sidebar = () => {
   const menuItems = [
-    { icon: <LayoutGrid size={20} />, label: "Overview", path: "/" },
+    { icon: <LayoutGrid size={20} />, label: "Dashboard", path: "/" },
     {
       icon: <Users size={20} />,
       label: "Users",
@@ -37,7 +37,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside className="w-64 bg-[#FAFBFC] h-full flex flex-col border-r border-gray-100 py-4 relative">
+    <aside className="w-64 bg-[#FAFBFC] flex flex-col border-r border-gray-100 py-4 relative h-full">
       {/* Logo Section */}
       <div className="flex items-center gap-3 mb-10 px-8">
         <div className="w-10 h-10 bg-[#E8F5E9] rounded-full flex items-center justify-center">
@@ -46,7 +46,7 @@ const Sidebar = () => {
             <div className="absolute top-0.5 right-1 w-1.5 h-1.5 bg-white rounded-xl"></div>
           </div>
         </div>
-        <span className="text-2xl font-bold text-[#1A1C1E] tracking-tight">
+        <span className="text-2xl font-bold text-gray-800 tracking-tight">
           Donezo
         </span>
       </div>

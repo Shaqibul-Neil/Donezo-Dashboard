@@ -3,7 +3,7 @@ import { Search, Mail, Bell, Command, Menu } from "lucide-react";
 
 const Navbar = () => {
   return (
-    <nav className="w-full flex items-center justify-between p-4 bg-[#FAFBFC] border border-gray-100 rounded-2xl">
+    <nav className="w-full flex items-center justify-between md:p-4 p-2 bg-[#FAFBFC] border border-gray-100 rounded-2xl">
       {/* Left side - Toggle Button + Search */}
       <div className="flex items-center gap-4 flex-1">
         {/* Hamburger Toggle */}
@@ -14,7 +14,7 @@ const Navbar = () => {
           <Menu size={22} className="text-gray-600" />
         </label>
         {/* Search Bar */}
-        <div className="relative flex items-center w-full max-w-100">
+        <div className="relative items-center w-full max-w-100 hidden md:flex">
           <Search className="absolute left-5 text-gray-400" size={20} />
           <input
             type="text"
@@ -49,8 +49,8 @@ const Navbar = () => {
               className="w-full h-full object-cover bg-[#FFE4D6]"
             />
           </div>
-          <div className="flex flex-col">
-            <span className="text-[15px] font-bold text-[#1A1C1E]">
+          <div className="md:flex flex-col hidden">
+            <span className="text-[15px] font-bold text-gray-800">
               Totok Michael
             </span>
             <span className="text-[12px] text-gray-400 font-medium tracking-tight overflow-hidden text-ellipsis whitespace-nowrap max-w-37.5">
