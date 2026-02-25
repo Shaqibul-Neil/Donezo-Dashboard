@@ -1,9 +1,13 @@
 import React from "react";
+import { cn } from "../../lib/utils";
 
-const Button = ({ text, onClick, variant = "primary", icon: Icon }) => {
-  const baseStyles =
-    "flex items-center gap-2 h-10 rounded-full font-bold text-[14px] transition-all duration-300 active:scale-95 shadow-sm cursor-pointer justify-center";
-
+const Button = ({
+  text,
+  onClick,
+  variant = "primary",
+  icon: Icon,
+  className,
+}) => {
   const variants = {
     primary:
       "bg-gradient-to-br from-[#006442] via-[#006442] to-[#0D442A] text-white hover:opacity-90 w-40",
@@ -12,7 +16,14 @@ const Button = ({ text, onClick, variant = "primary", icon: Icon }) => {
   };
 
   return (
-    <button onClick={onClick} className={`${baseStyles} ${variants[variant]}`}>
+    <button
+      onClick={onClick}
+      className={cn(
+        "flex items-center gap-2 h-10 lg:h-12 rounded-full font-bold text-[14px] transition-all duration-300 active:scale-95 shadow-sm cursor-pointer justify-center",
+        variants[variant],
+        className,
+      )}
+    >
       {Icon && <Icon size={18} />}
       {text}
     </button>

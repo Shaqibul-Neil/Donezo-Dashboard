@@ -22,7 +22,7 @@ const OverviewCards = ({ overview }) => {
     },
     {
       title: "Growth",
-      value: growth,
+      value: `${growth}%`,
       isPrimary: false,
     },
   ];
