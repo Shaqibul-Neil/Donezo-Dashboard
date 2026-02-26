@@ -4,12 +4,11 @@ import AnalyticsBarChart from "../chart/AnalyticsBarChart";
 
 const AnalyticsSection = ({ analytics }) => {
   return (
-    <div className="box-style">
+    <div className="box-style space-y-4">
       {/* Title Area */}
-      <div className="space-y-4">
-        <SectionHeader>Project Analytics</SectionHeader>
-        <AnalyticsBarChart analytics={analytics} />
-      </div>
+      <SectionHeader>Project Analytics</SectionHeader>
+      {/* Chart Area */}
+      <AnalyticsBarChart analytics={analytics} />
     </div>
   );
 };

@@ -1,7 +1,6 @@
 import React from "react";
 
 export const CustomTooltip = ({ active, payload }) => {
-  console.log(payload);
   if (active && payload && payload.length) {
     const data = payload[0].payload;
     return (

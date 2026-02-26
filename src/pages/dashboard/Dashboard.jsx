@@ -6,6 +6,7 @@ import Error from "../../components/miscellaneous/Error";
 import OverviewCards from "../../components/card/OverviewCards";
 import Reminders from "../../components/dashboard/Reminders";
 import AnalyticsSection from "../../components/dashboard/AnalyticsSection";
+import ProductSection from "../../components/dashboard/ProductSection";
 
 const Dashboard = () => {
   const { dashboard, oLoading, oError } = useDashboard();
@@ -51,7 +52,9 @@ const Dashboard = () => {
         </div>
         {/* Project and Time tracker */}
         <div className="space-y-4">
-          <div className="border">Project</div>
+          <div className="">
+            <ProductSection products={products} />
+          </div>
           <div className="border">Tracker</div>
         </div>
       </div>
