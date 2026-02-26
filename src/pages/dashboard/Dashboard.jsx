@@ -5,16 +5,17 @@ import Loading from "../../components/miscellaneous/Loading";
 import Error from "../../components/miscellaneous/Error";
 import OverviewCards from "../../components/card/OverviewCards";
 import Reminders from "../../components/dashboard/Reminders";
+import AnalyticsSection from "../../components/dashboard/AnalyticsSection";
 
 const Dashboard = () => {
   const { dashboard, oLoading, oError } = useDashboard();
-  console.log(dashboard);
+
   if (oLoading) return <Loading />;
   if (oError) return <Error />;
   const overview = dashboard?.overview || {};
-  const analytics = dashboard?.analytics || {};
-  const users = dashboard?.users || {};
-  const products = dashboard?.products || {};
+  const analytics = dashboard?.analytics || [];
+  const users = dashboard?.users || [];
+  const products = dashboard?.products || [];
 
   return (
     <div className="space-y-4">
@@ -32,7 +33,9 @@ const Dashboard = () => {
           {/* Analytics and Reminder */}
           <div className="grid lg:grid-cols-3 gap-4">
             {/* analytics */}
-            <div className="col-span-2 border">Analytics</div>
+            <div className="col-span-2">
+              <AnalyticsSection analytics={analytics} />
+            </div>
             {/* reminder */}
             <div className="col-span-1">
               <Reminders />
