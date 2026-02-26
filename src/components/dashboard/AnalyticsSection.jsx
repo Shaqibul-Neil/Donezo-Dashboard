@@ -6,7 +6,7 @@ const AnalyticsSection = ({ analytics }) => {
   return (
     <div className="box-style space-y-4">
       {/* Title Area */}
-      <SectionHeader>Project Analytics</SectionHeader>
+      <SectionHeader className="pt-1">Project Analytics</SectionHeader>
       {/* Chart Area */}
       <AnalyticsBarChart analytics={analytics} />
     </div>

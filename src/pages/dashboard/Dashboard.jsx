@@ -7,6 +7,7 @@ import OverviewCards from "../../components/card/OverviewCards";
 import Reminders from "../../components/dashboard/Reminders";
 import AnalyticsSection from "../../components/dashboard/AnalyticsSection";
 import ProductSection from "../../components/dashboard/ProductSection";
+import UserSection from "../../components/dashboard/UserSection";
 
 const Dashboard = () => {
   const { dashboard, oLoading, oError } = useDashboard();
@@ -42,10 +43,12 @@ const Dashboard = () => {
               <Reminders />
             </div>
           </div>
-          {/* Team  and Progress */}
+          {/* User  and Progress */}
           <div className="flex gap-4">
-            {/* team */}
-            <div className="border w-1/2">Team</div>
+            {/* user */}
+            <div className="w-1/2">
+              <UserSection users={users} />
+            </div>
             {/* progress */}
             <div className="border w-1/2">Progress</div>
           </div>

@@ -41,7 +41,7 @@ const StatCard = ({ title, value, isPrimary = false }) => {
         </div>
         {/* Middle Section: Value */}
         <div className="mt-auto">
-          <h2 className="text-[44px] font-bold leading-none mb-3">
+          <h2 className="text-4xl font-bold leading-none mb-3">
             {value.toLocaleString()}
           </h2>
 
