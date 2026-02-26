@@ -26,29 +26,29 @@ const UserSection = ({ users }) => {
           const avatarUrl = `/src/assets/${user.name}.webp`;
           return (
             <div
-              key={user.id}
+              key={user?.id}
               className="flex items-center gap-2 group cursor-pointer"
             >
               {/* Avatar */}
               <div className="w-10 h-10 rounded-full overflow-hidden transition-transform group-hover:scale-105 duration-300 border border-gray-50 shrink-0">
                 <img
                   src={avatarUrl}
-                  alt={user.name}
+                  alt={user?.name}
                   className="w-full h-full object-cover"
                   onError={(e) => {
-                    e.target.src = `https://ui-avatars.com/api/?name=${user.name}&background=002B1B&color=fff`;
+                    e.target.src = `https://ui-avatars.com/api/?name=${user?.name}&background=002B1B&color=fff`;
                   }}
                 />
               </div>
               {/* Info Section */}
               <div className="flex-1 min-w-0">
                 <h4 className="text-gray-800 leading-tight mb-0.5 truncate group-hover:text-[#002B1B] transition-colors">
-                  {user.name}
+                  {user?.name}
                 </h4>
                 <p className="text-xs text-gray-400 whitespace-nowrap">
                   Joined on{" "}
                   <span className="text-gray-600">
-                    {new Date(user.joinDate).toLocaleDateString("en-US", {
+                    {new Date(user?.joinDate).toLocaleDateString("en-US", {
                       weekday: "long",
                       year: "numeric",
                       month: "long",
@@ -59,7 +59,7 @@ const UserSection = ({ users }) => {
               </div>
               {/* Status Badge */}
               <div className="shrink-0">
-                <StatusBadge status={user.status} />
+                <StatusBadge status={user?.status} />
               </div>
             </div>
           );

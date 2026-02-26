@@ -8,6 +8,7 @@ import Reminders from "../../components/dashboard/Reminders";
 import AnalyticsSection from "../../components/dashboard/AnalyticsSection";
 import ProductSection from "../../components/dashboard/ProductSection";
 import UserSection from "../../components/dashboard/UserSection";
+import ProgressSection from "../../components/dashboard/ProgressSection";
 
 const Dashboard = () => {
   const { dashboard, oLoading, oError } = useDashboard();
@@ -50,7 +51,9 @@ const Dashboard = () => {
               <UserSection users={users} />
             </div>
             {/* progress */}
-            <div className="border w-1/2">Progress</div>
+            <div className="w-1/2">
+              <ProgressSection />
+            </div>
           </div>
         </div>
         {/* Project and Time tracker */}
