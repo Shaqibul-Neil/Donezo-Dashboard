@@ -10,8 +10,11 @@ import {
 } from "recharts";
 import { dayFormat } from "../../lib/utils";
 import { CustomTooltip } from "./CustomToolTip";
+import CustomBar from "./CustomBar";
 
 const AnalyticsBarChart = ({ analytics }) => {
+  const conversionData = analytics.map((data) => data.conversions).sort();
+
   const daysOfTheWeek = ["S", "M", "T", "W", "T", "F", "S"];
   const fullDayNames = [
     "Sunday",
@@ -39,8 +42,9 @@ const AnalyticsBarChart = ({ analytics }) => {
     };
   });
 
-  //getting the max value
-  const maxValue = Math.max(...chartData.map((data) => data.value));
+  //getting the max-min value
+  const maxValue = conversionData[conversionData.length - 1];
+  const minValue = conversionData[0];
 
   return (
     <div className="w-full h-40">
@@ -94,25 +98,8 @@ const AnalyticsBarChart = ({ analytics }) => {
             name="Projects"
             barSize={45}
             radius={[25, 25, 25, 25]}
-          >
-            {chartData.map((entry, index) => {
-              let fill;
-              if (entry.isEmpty) {
-                fill = "url(#barStripes)";
-              } else if (entry.value === maxValue && maxValue > 0) {
-                fill = "#002B1B";
-              } else {
-                fill = "#74C29B";
-              }
-              return (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={fill}
-                  stroke={entry.isEmpty ? "#F3F4F6" : "none"}
-                />
-              );
-            })}
-          </Bar>
+            shape={<CustomBar maxValue={maxValue} minValue={minValue} />}
+          />
         </BarChart>
       </ResponsiveContainer>
     </div>

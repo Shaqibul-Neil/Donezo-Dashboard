@@ -1,6 +1,22 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+@font-face {
+  font-family: "Outfit";
+  src: url("./assets/fonts/Outfit/Outfit-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+/* Override default font */
+@theme {
+  --font-sans:
+    "Outfit", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
 /* common section style */
 .box-style {
   @apply bg-white p-4 rounded-2xl border border-gray-50 h-full flex flex-col justify-between shadow-sm;

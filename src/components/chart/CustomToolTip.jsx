@@ -10,7 +10,7 @@ export const CustomTooltip = ({ active, payload }) => {
         </p>
 
         <p className="text-white text-[14px] font-extrabold">
-          Conversion: <span className="text-[#74C29B]">{data.value}</span>
+          Conversion: <span className="text-[#74C29B]">{data.value}%</span>
         </p>
       </div>
     );

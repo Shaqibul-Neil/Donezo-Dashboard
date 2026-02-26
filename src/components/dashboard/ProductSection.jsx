@@ -2,6 +2,7 @@ import React from "react";
 import SectionHeader from "../headers/SectionHeader";
 import Button from "../button/Button";
 import { Plus, Zap, Layers, Building2, BarChart } from "lucide-react";
+import ListHeader from "../headers/ListHeader";
 
 const ProductSection = ({ products }) => {
   const iconConfig = [
@@ -42,9 +43,7 @@ const ProductSection = ({ products }) => {
               </div>
               {/* Text */}
               <div className="flex-1">
-                <h4 className="text-lg text-gray-800 leading-tight mb-1 group-hover:text-[#002B1B] transition-colors">
-                  {product.name}
-                </h4>
+                <ListHeader> {product.name}</ListHeader>
                 <div className="text-xs text-gray-400 font-semibold flex items-center gap-1">
                   Price: ${product.price}{" "}
                   <div className="w-1 h-1 rounded-full bg-green-700"></div>{" "}

@@ -3,6 +3,7 @@ import Button from "../button/Button";
 import { Plus } from "lucide-react";
 import SectionHeader from "../headers/SectionHeader";
 import StatusBadge from "../miscellaneous/StatusBadge";
+import ListHeader from "../headers/ListHeader";
 
 const UserSection = ({ users }) => {
   return (
@@ -42,9 +43,7 @@ const UserSection = ({ users }) => {
               </div>
               {/* Info Section */}
               <div className="flex-1 min-w-0">
-                <h4 className="text-gray-800 leading-tight mb-0.5 truncate group-hover:text-[#002B1B] transition-colors">
-                  {user?.name}
-                </h4>
+                <ListHeader>{user?.name}</ListHeader>
                 <p className="text-xs text-gray-400 whitespace-nowrap">
                   Joined on{" "}
                   <span className="text-gray-600">
