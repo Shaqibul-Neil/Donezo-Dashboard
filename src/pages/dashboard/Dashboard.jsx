@@ -31,12 +31,12 @@ const Dashboard = () => {
       <OverviewCards overview={overview} />
 
       {/* Grid */}
-      <div className=" grid lg:grid-cols-4 gap-4 text-black">
-        <div className="lg:col-span-3 space-y-4">
+      <div className=" grid xl:grid-cols-4 gap-4 min-w-0">
+        <div className="xl:col-span-3 space-y-4">
           {/* Analytics and Reminder */}
-          <div className="grid lg:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-3 gap-4">
             {/* analytics */}
-            <div className="col-span-2">
+            <div className="md:col-span-2">
               <AnalyticsSection analytics={analytics} />
             </div>
             {/* reminder */}
@@ -44,21 +44,23 @@ const Dashboard = () => {
               <Reminders />
             </div>
           </div>
+
           {/* User  and Progress */}
-          <div className="flex gap-4">
+          <div className="flex gap-4 flex-col md:flex-row">
             {/* user */}
-            <div className="w-1/2">
+            <div className="md:w-1/2">
               <UserSection users={users} />
             </div>
             {/* progress */}
-            <div className="w-1/2">
-              <ProgressSection />
+            <div className="md:w-1/2">
+              <ProgressSection analytics={analytics} />
             </div>
           </div>
         </div>
+
         {/* Project and Time tracker */}
-        <div className="space-y-4">
-          <div className="">
+        <div className="space-y-4 flex xl:flex-col flex-col  md:flex-row md:gap-4 xl:gap-0">
+          <div className="md:w-1/2 xl:w-full">
             <ProductSection products={products} />
           </div>
           <div className="border">Tracker</div>

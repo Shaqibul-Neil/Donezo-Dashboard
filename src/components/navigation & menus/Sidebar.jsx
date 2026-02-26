@@ -7,8 +7,10 @@ import {
   HelpCircle,
   LogOut,
   Bot,
+  Medal,
 } from "lucide-react";
 import SidebarLinks from "./SidebarLinks";
+import Button from "../button/Button";
 
 const Sidebar = () => {
   const menuItems = [
@@ -37,9 +39,9 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside className="w-64 bg-[#FAFBFC] h-full flex flex-col border-r border-gray-100 py-4 relative">
+    <aside className="w-64 bg-[#FAFBFC] min-h-screen flex flex-col border-r border-gray-100 py-4 relative rounded-2xl">
       {/* Logo Section */}
-      <div className="flex items-center gap-3 mb-10 px-8">
+      <div className="flex items-center gap-3 mb-8 px-8">
         <div className="w-10 h-10 bg-[#E8F5E9] rounded-full flex items-center justify-center">
           <div className="w-6 h-6 border-[3px] border-[#006442] rounded-full flex items-center justify-center relative">
             <div className="w-2.5 h-2.5 bg-[#006442] rounded-full"></div>
@@ -87,12 +89,10 @@ const Sidebar = () => {
       </div>
 
       {/* Download App Card */}
-      <div className="mx-6 p-6 bg-[#0A0D0B] rounded-4xl relative overflow-hidden group mt-4">
-        <div className="absolute top-0 right-0 w-32 h-32 bg-[#1B2B1F] rounded-full blur-3xl -mr-16 -mt-16 opacity-50" />
-        <div className="absolute bottom-0 left-0 w-24 h-24 bg-[#0D442A] rounded-full blur-2xl -ml-12 -mb-12 opacity-30" />
+      <div className="mx-6 p-6 bg-[#0A0D0B] rounded-2xl relative group">
         <div className="relative z-10 flex flex-col items-start">
           <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-4 border border-white/10">
-            <Users size={16} className="text-white" />
+            <Medal size={16} className="text-white" />
           </div>
           <h4 className="text-white font-bold text-[17px] mb-1 leading-tight text-pretty">
             Download our Mobile App
@@ -100,9 +100,7 @@ const Sidebar = () => {
           <p className="text-gray-400 text-[12px] mb-6">
             Get easy in another way
           </p>
-          <button className="w-full py-3.5 bg-[#006442] hover:bg-[#007A50] text-white rounded-2xl text-[14px] font-bold transition-all duration-300">
-            Download
-          </button>
+          <Button variant="primary" text="Download" className="w-full px-2" />
         </div>
       </div>
     </aside>

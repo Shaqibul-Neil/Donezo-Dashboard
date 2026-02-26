@@ -5,7 +5,7 @@ const SectionHeader = ({ children, className }) => {
   return (
     <h3
       className={cn(
-        "text-xl font-bold text-gray-800 leading-none tracking-tighter",
+        "text-xl text-gray-800 leading-none tracking-tighter",
         className,
       )}
     >

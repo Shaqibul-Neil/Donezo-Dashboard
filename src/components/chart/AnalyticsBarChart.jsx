@@ -6,11 +6,11 @@ import {
   YAxis,
   Tooltip,
   ResponsiveContainer,
-  Cell,
 } from "recharts";
 import { dayFormat } from "../../lib/utils";
 import { CustomTooltip } from "./CustomToolTip";
-import CustomBar from "./CustomBar";
+import StripedBg from "../miscellaneous/StripedBg";
+import { CustomBar } from "./CustomShapes";
 
 const AnalyticsBarChart = ({ analytics }) => {
   const conversionData = analytics.map((data) => data.conversions).sort();
@@ -47,32 +47,15 @@ const AnalyticsBarChart = ({ analytics }) => {
   const minValue = conversionData[0];
 
   return (
-    <div className="w-full h-40">
+    <div className="md:w-full w-[90%] h-40">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
           data={chartData}
-          margin={{ top: 10, right: 10, left: 10, bottom: 0 }}
+          margin={{ top: 10, right: 0, left: 10, bottom: 0 }}
           barGap={1}
         >
           {/* Stripe Pattern */}
-          <defs>
-            <pattern
-              id="barStripes"
-              patternUnits="userSpaceOnUse"
-              width="8"
-              height="8"
-              patternTransform="rotate(45)"
-            >
-              <line
-                x1="0"
-                y1="0"
-                x2="0"
-                y2="8"
-                stroke="#002B1B"
-                strokeWidth="2"
-              />
-            </pattern>
-          </defs>
+          <StripedBg />
 
           <XAxis
             dataKey="dayLabel"

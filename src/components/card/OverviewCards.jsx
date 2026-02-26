@@ -47,7 +47,7 @@ const OverviewCards = ({ overview }) => {
       variants={containerVariants}
       initial={"hidden"}
       animate="visible"
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
+      className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4"
     >
       {statsData.map((stat, idx) => (
         <motion.div key={idx} variants={itemVariants}>

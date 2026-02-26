@@ -44,9 +44,9 @@ const UserSection = ({ users }) => {
               {/* Info Section */}
               <div className="flex-1 min-w-0">
                 <ListHeader>{user?.name}</ListHeader>
-                <p className="text-xs text-gray-400 whitespace-nowrap">
+                <p className="text-[10px] md:text-xs text-gray-400 whitespace-nowrap">
                   Joined on{" "}
-                  <span className="text-gray-600">
+                  <span className="text-gray-600 block sm:inline">
                     {new Date(user?.joinDate).toLocaleDateString("en-US", {
                       weekday: "long",
                       year: "numeric",

@@ -4,21 +4,21 @@ import Sidebar from "../components/navigation & menus/Sidebar";
 
 const DashboardLayout = () => {
   return (
-    <div className="drawer lg:drawer-open min-h-screen">
+    <div className="drawer lg:drawer-open min-h-screen bg-white">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
 
       <div className="drawer-content flex flex-col bg-white">
         {/* Navbar  */}
-        <div className="mx-4 mt-2">
+        <div className="md:mx-4 mx-2 mt-2">
           <Navbar />
         </div>
         {/* Page content */}
-        <main className="flex-1 overflow-y-auto p-4 bg-[#FAFBFC] mx-4 mt-4 rounded-2xl">
+        <main className="flex-1 overflow-y-auto overflow-x-hidden md:p-4 p-2 bg-[#FAFBFC] md:mx-4 mx-2 mt-4 rounded-2xl">
           <Outlet />
         </main>
       </div>
       {/* Sidebar */}
-      <div className="drawer-side z-50">
+      <div className="drawer-side z-50 my-2 ml-2 bg-white rounded-2xl">
         <label
           htmlFor="my-drawer-4"
           aria-label="close sidebar"

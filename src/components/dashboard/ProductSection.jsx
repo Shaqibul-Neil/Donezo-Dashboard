@@ -27,7 +27,6 @@ const ProductSection = ({ products }) => {
       </div>
 
       {/* Product List */}
-
       <div className="space-y-3">
         {products?.map((product, index) => {
           const config = iconConfig[index] || iconConfig[0];
@@ -35,7 +34,7 @@ const ProductSection = ({ products }) => {
           return (
             <div
               key={product.id}
-              className="flex items-center gap-3 group cursor-pointer"
+              className="flex items-center gap-2 group cursor-pointer"
             >
               {/* Icon */}
               <div className="w-10 h-10 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110 duration-300">
