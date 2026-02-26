@@ -5,7 +5,7 @@ import SectionHeader from "../headers/SectionHeader";
 
 const Reminders = () => {
   return (
-    <div className="bg-white p-4 rounded-2xl border border-gray-50 h-full flex flex-col justify-between shadow-sm">
+    <div className="box-style">
       {/* Title Area */}
       <div className="space-y-4">
         <SectionHeader>Reminders</SectionHeader>

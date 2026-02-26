@@ -37,7 +37,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside className="w-64 bg-[#FAFBFC] flex flex-col border-r border-gray-100 py-4 relative h-full">
+    <aside className="w-64 bg-[#FAFBFC] h-full flex flex-col border-r border-gray-100 py-4 relative">
       {/* Logo Section */}
       <div className="flex items-center gap-3 mb-10 px-8">
         <div className="w-10 h-10 bg-[#E8F5E9] rounded-full flex items-center justify-center">

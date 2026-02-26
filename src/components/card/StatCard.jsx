@@ -1,10 +1,11 @@
 import React from "react";
 import { ArrowUpRight, ChevronUp } from "lucide-react";
+import SectionHeader from "../headers/SectionHeader";
 
 const StatCard = ({ title, value, isPrimary = false }) => {
   return (
     <div
-      className={`relative p-6 rounded-2xl flex flex-col justify-between transform transition-all group cursor-pointer shadow-sm border border-gray-100 duration-700 hover:scale-101 hover:-translate-y-3 ${
+      className={`relative transform transition-all group cursor-pointer duration-700 hover:scale-101 hover:-translate-y-3 box-style ${
         isPrimary
           ? "bg-linear-to-br from-[#97C05C] via-[#006442] to-[#023523] text-white shadow-lg shadow-emerald-900/10"
           : "bg-white text-gray-800"
@@ -25,11 +26,12 @@ const StatCard = ({ title, value, isPrimary = false }) => {
       <div className="relative z-10 flex flex-col h-full justify-between">
         {/* Top Section: Title & Icon */}
         <div className="flex justify-between items-start">
-          <h3
-            className={`text-xl font-bold leading-none tracking-tighter ${isPrimary ? "text-white/90" : "text-gray-800"}`}
+          <SectionHeader
+            className={`${isPrimary ? "text-white/90" : "text-gray-800"}`}
           >
             {title}
-          </h3>
+          </SectionHeader>
+
           <div
             className="w-10 h-10 rounded-full flex items-center justify-center border 
             border-gray-100 bg-white shadow-sm transition-transform group-hover:rotate-360 duration-1000 pointer-events-none"
