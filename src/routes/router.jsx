@@ -10,6 +10,7 @@ import Products from "../pages/dashboard/Products";
 import Users from "../pages/dashboard/Users";
 import Settings from "../pages/dashboard/Settings";
 import Help from "../pages/dashboard/Help";
+import Calender from "../pages/dashboard/Calender";
 
 const router = createBrowserRouter([
   //dashboard
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/analytics",
         element: <Analytics />,
+      },
+      {
+        path: "/calender",
+        element: <Calender />,
       },
       {
         path: "/products",

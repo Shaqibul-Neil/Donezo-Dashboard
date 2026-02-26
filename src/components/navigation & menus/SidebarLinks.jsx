@@ -6,10 +6,8 @@ const SidebarLinks = ({ to, label, icon, badge }) => {
     <NavLink
       to={to}
       className={({ isActive }) =>
-        `flex items-center justify-between px-4 py-2 rounded-2xl cursor-pointer transition-all duration-400 group relative ${
-          isActive
-            ? "text-gray-800"
-            : "text-[#87888C] hover:bg-gray-50 hover:text-[#006442]"
+        `flex items-center justify-between px-4 py-2 rounded-2xl cursor-pointer transition-all duration-400 group relative text-[#868988] ${
+          isActive ? "text-gray-800" : "hover:bg-gray-50 hover:text-[#006442]"
         }`
       }
     >
@@ -23,7 +21,7 @@ const SidebarLinks = ({ to, label, icon, badge }) => {
               {icon}
             </span>
             {/* Label */}
-            <span className="font-bold text-[15px]">{label}</span>
+            <span className="text-base">{label}</span>
           </div>
 
           {/* Badge (Optional) */}

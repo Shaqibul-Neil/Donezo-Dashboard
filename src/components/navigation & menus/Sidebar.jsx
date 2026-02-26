@@ -8,6 +8,7 @@ import {
   LogOut,
   Bot,
   Medal,
+  Calendar,
 } from "lucide-react";
 import SidebarLinks from "./SidebarLinks";
 import Button from "../button/Button";
@@ -15,6 +16,16 @@ import Button from "../button/Button";
 const Sidebar = () => {
   const menuItems = [
     { icon: <LayoutGrid size={20} />, label: "Dashboard", path: "/" },
+    {
+      icon: <ClipboardCheck size={20} />,
+      label: "Analytics",
+      path: "/analytics",
+    },
+    {
+      icon: <Calendar size={20} />,
+      label: "Calender",
+      path: "/calender",
+    },
     {
       icon: <Users size={20} />,
       label: "Users",
@@ -24,11 +35,6 @@ const Sidebar = () => {
       icon: <Bot size={20} />,
       label: "Products",
       path: "/products",
-    },
-    {
-      icon: <ClipboardCheck size={20} />,
-      label: "Analytics",
-      path: "/analytics",
     },
   ];
 
