@@ -45,21 +45,13 @@ const UserSection = ({ users }) => {
               <div className="flex-1 min-w-0">
                 <ListHeader>{user?.name}</ListHeader>
                 <p className="text-[10px] md:text-xs text-gray-400 whitespace-nowrap">
-                  Joined on{" "}
-                  <span className="text-gray-600 block sm:inline">
-                    {new Date(user?.joinDate).toLocaleDateString("en-US", {
-                      weekday: "long",
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </span>
+                  {user?.email}
                 </p>
               </div>
               {/* Status Badge */}
-              <div className="shrink-0">
-                <StatusBadge status={user?.status} />
-              </div>
+              <div
+                className={`shrink-0 w-2 h-2 rounded-2xl ${user?.status === "active" ? "bg-green-700" : "bg-[#E53935]"}`}
+              ></div>
             </div>
           );
         })}

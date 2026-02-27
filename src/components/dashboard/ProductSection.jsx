@@ -1,15 +1,15 @@
 import React from "react";
 import SectionHeader from "../headers/SectionHeader";
 import Button from "../button/Button";
-import { Plus, Zap, Layers, Building2, BarChart } from "lucide-react";
+import { Plus, Crown, Rocket, BotMessageSquare, ChartLine } from "lucide-react";
 import ListHeader from "../headers/ListHeader";
 
 const ProductSection = ({ products }) => {
   const iconConfig = [
-    { icon: Zap, color: "text-blue-500" },
-    { icon: Layers, color: "text-teal-500" },
-    { icon: Building2, color: "text-orange-500" },
-    { icon: BarChart, color: "text-yellow-600" },
+    { icon: Crown, color: "text-blue-500" },
+    { icon: Rocket, color: "text-teal-500" },
+    { icon: ChartLine, color: "text-orange-500" },
+    { icon: BotMessageSquare, color: "text-yellow-600" },
   ];
 
   return (
@@ -20,8 +20,8 @@ const ProductSection = ({ products }) => {
         <Button
           variant="secondary"
           icon={Plus}
-          text="New"
-          className="w-18 h-6 lg:h-8 px-2"
+          text="Add Product"
+          className="w-32 h-6 lg:h-8 px-2"
           onClick={() => console.log("New Product")}
         />
       </div>
@@ -42,10 +42,17 @@ const ProductSection = ({ products }) => {
               </div>
               {/* Text */}
               <div className="flex-1">
-                <ListHeader> {product.name}</ListHeader>
+                <div className="flex justify-between items-center">
+                  <ListHeader> {product.name}</ListHeader>
+
+                  {/* Status Badge */}
+                  <div
+                    className={`shrink-0 px-2 rounded-2xl text-xs capitalize ${product?.category === "addon" ? "bg-green-100 text-[#002B1B] border-green-100" : "bg-blue-100 text-blue-800"}`}
+                  >
+                    {product?.category}
+                  </div>
+                </div>
                 <div className="text-xs text-gray-400 font-semibold flex items-center gap-1">
-                  Price: ${product.price}{" "}
-                  <div className="w-1 h-1 rounded-full bg-green-700"></div>{" "}
                   Sales: <span className="text-gray-500">{product.sales}</span>
                 </div>
               </div>

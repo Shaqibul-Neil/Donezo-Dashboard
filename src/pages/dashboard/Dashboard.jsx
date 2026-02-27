@@ -9,6 +9,7 @@ import AnalyticsSection from "../../components/dashboard/AnalyticsSection";
 import ProductSection from "../../components/dashboard/ProductSection";
 import UserSection from "../../components/dashboard/UserSection";
 import ProgressSection from "../../components/dashboard/ProgressSection";
+import TimeTracker from "../../components/dashboard/TimeTracker";
 
 const Dashboard = () => {
   const { dashboard, oLoading, oError } = useDashboard();
@@ -49,7 +50,7 @@ const Dashboard = () => {
           <div className="flex gap-4 flex-col md:flex-row">
             {/* user */}
             <div className="md:w-1/2">
-              <UserSection users={users} />
+              <ProductSection products={products} />
             </div>
             {/* progress */}
             <div className="md:w-1/2">
@@ -61,9 +62,11 @@ const Dashboard = () => {
         {/* Project and Time tracker */}
         <div className="space-y-4 flex xl:flex-col flex-col  md:flex-row md:gap-4 xl:gap-0">
           <div className="md:w-1/2 xl:w-full">
-            <ProductSection products={products} />
+            <UserSection users={users} />
           </div>
-          <div className="border">Tracker</div>
+          <div className="">
+            <TimeTracker />
+          </div>
         </div>
       </div>
     </div>
