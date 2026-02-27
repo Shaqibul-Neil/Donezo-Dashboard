@@ -48,7 +48,7 @@ const AnalyticsBarChart = ({ analytics }) => {
 
   return (
     <div className="md:w-full w-[90%] h-40">
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" height={160}>
         <BarChart
           data={chartData}
           margin={{ top: 10, right: 0, left: 10, bottom: 0 }}

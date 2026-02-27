@@ -38,114 +38,116 @@ const Dashboard = () => {
   const closePanel = () => setPanel({ ...panel, isOpen: false });
 
   return (
-    <AnimatePresence mode="popLayout">
-      {oLoading ? (
-        <motion.div
-          key="skeleton"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <Loading />
-        </motion.div>
-      ) : (
-        <motion.div
-          key="dashboard"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="space-y-4"
-        >
-          {/* Header */}
+    <>
+      <AnimatePresence mode="popLayout">
+        {oLoading ? (
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.5 }}
-            className="will-change-transform"
+            key="skeleton"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
           >
-            <PageHeader
-              title="Dashboard"
-              subTitle="Plan, prioritize, and accomplish your tasks with ease."
+            <Loading />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="dashboard"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="space-y-4"
+          >
+            {/* Header */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.5 }}
+              className="will-change-transform"
             >
-              <Button
-                variant="primary"
-                text="Add Product"
-                icon={Plus}
-                onClick={() =>
-                  openPanel(
-                    "Add New Product",
-                    <AddProductsForm onClose={closePanel} />,
-                  )
-                }
-              />
-              <Button
-                variant="secondary"
-                text="Import Data"
-                onClick={() => console.log("Import Data clicked")}
-              />
-            </PageHeader>
-          </motion.div>
+              <PageHeader
+                title="Dashboard"
+                subTitle="Plan, prioritize, and accomplish your tasks with ease."
+              >
+                <Button
+                  variant="primary"
+                  text="Add Product"
+                  icon={Plus}
+                  onClick={() =>
+                    openPanel(
+                      "Add New Product",
+                      <AddProductsForm onClose={closePanel} />,
+                    )
+                  }
+                />
+                <Button
+                  variant="secondary"
+                  text="Import Data"
+                  onClick={() => console.log("Import Data clicked")}
+                />
+              </PageHeader>
+            </motion.div>
 
-          {/* Stat Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="will-change-transform"
-          >
-            <OverviewCards overview={overview} />
-          </motion.div>
+            {/* Stat Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              className="will-change-transform"
+            >
+              <OverviewCards overview={overview} />
+            </motion.div>
 
-          {/* Grid */}
-          <div className=" grid xl:grid-cols-4 gap-4 min-w-0">
-            <div className="xl:col-span-3 space-y-4">
-              {/* Analytics and Reminder */}
-              <div className="grid md:grid-cols-3 gap-4">
-                {/* analytics */}
-                <div className="md:col-span-2 w-full">
-                  <AnalyticsSection analytics={analytics} />
+            {/* Grid */}
+            <div className=" grid xl:grid-cols-4 gap-4 min-w-0">
+              <div className="xl:col-span-3 space-y-4">
+                {/* Analytics and Reminder */}
+                <div className="grid md:grid-cols-3 gap-4">
+                  {/* analytics */}
+                  <div className="md:col-span-2 w-full">
+                    <AnalyticsSection analytics={analytics} />
+                  </div>
+                  {/* reminder */}
+                  <div className="col-span-1">
+                    <Reminders setIsMeetingOpen={setIsMeetingOpen} />
+                  </div>
                 </div>
-                {/* reminder */}
-                <div className="col-span-1">
-                  <Reminders setIsMeetingOpen={setIsMeetingOpen} />
+
+                {/* User and Progress */}
+                <div className="flex gap-4 flex-col md:flex-row">
+                  {/* products */}
+                  <div className="md:w-1/2">
+                    <ProductSection
+                      products={products}
+                      openPanel={openPanel}
+                      closePanel={closePanel}
+                    />
+                  </div>
+                  {/* progress */}
+                  <div className="md:w-1/2">
+                    <ProgressSection analytics={analytics} />
+                  </div>
                 </div>
               </div>
 
-              {/* User and Progress */}
-              <div className="flex gap-4 flex-col md:flex-row">
-                {/* products */}
-                <div className="md:w-1/2">
-                  <ProductSection
-                    products={products}
+              {/* Project and Time tracker */}
+              <div className="space-y-4 flex xl:flex-col flex-col  md:flex-row md:gap-4 xl:gap-0 items-start">
+                {/* user */}
+                <div className="md:w-1/2 xl:w-full w-full">
+                  <UserSection
                     openPanel={openPanel}
                     closePanel={closePanel}
+                    users={users}
                   />
                 </div>
-                {/* progress */}
-                <div className="md:w-1/2">
-                  <ProgressSection analytics={analytics} />
+                <div className="md:w-1/2 xl:w-full w-full">
+                  <TimeTracker />
                 </div>
               </div>
             </div>
-
-            {/* Project and Time tracker */}
-            <div className="space-y-4 flex xl:flex-col flex-col  md:flex-row md:gap-4 xl:gap-0 items-start">
-              {/* user */}
-              <div className="md:w-1/2 xl:w-full w-full">
-                <UserSection
-                  openPanel={openPanel}
-                  closePanel={closePanel}
-                  users={users}
-                />
-              </div>
-              <div className="md:w-1/2 xl:w-full w-full">
-                <TimeTracker />
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
       {/* Modal for meeting */}
       <MeetingForm
         isOpen={isMeetingOpen}
@@ -155,7 +157,7 @@ const Dashboard = () => {
       <SidePanel isOpen={panel.isOpen} onClose={closePanel} title={panel.title}>
         {panel.content}
       </SidePanel>
-    </AnimatePresence>
+    </>
   );
 };
 

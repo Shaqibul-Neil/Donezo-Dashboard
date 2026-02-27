@@ -7,8 +7,8 @@ import { useMobile } from "../../hooks/useMobile";
 const ConversionPieChart = ({ data, conversionRate }) => {
   const { isMobile } = useMobile();
   return (
-    <div className="md:w-full w-[90%] md:h-52 h-52 relative mx-auto">
-      <ResponsiveContainer width="100%" height="100%">
+    <div className="md:w-full w-[90%] h-52 relative mx-auto">
+      <ResponsiveContainer width="100%" height={208}>
         <PieChart>
           {/* Stripe Pattern */}
           <StripedBg />

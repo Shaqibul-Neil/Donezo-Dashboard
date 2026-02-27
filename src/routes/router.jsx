@@ -11,12 +11,28 @@ import Users from "../pages/dashboard/Users";
 import Settings from "../pages/dashboard/Settings";
 import Help from "../pages/dashboard/Help";
 import Calender from "../pages/dashboard/Calender";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
-  //dashboard
+  //authentication route
   {
     path: "/",
-    element: <DashboardLayout />,
+    element: <AuthLayout />,
+    children: [
+      {
+        index: true,
+        element: <Login />,
+      },
+    ],
+  },
+  //dashboard
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     errorElement: <NotFound />,
     children: [
       {
@@ -24,46 +40,37 @@ const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
-        path: "/analytics",
+        path: "analytics",
         element: <Analytics />,
       },
       {
-        path: "/calender",
+        path: "calender",
         element: <Calender />,
       },
       {
-        path: "/products",
+        path: "products",
         element: <Products />,
       },
       {
-        path: "/users",
+        path: "users",
         element: <Users />,
       },
       {
-        path: "/settings",
+        path: "settings",
         element: <Settings />,
       },
       {
-        path: "/help",
+        path: "help",
         element: <Help />,
       },
     ],
   },
-  //authentication route
-  {
-    path: "/",
-    element: <AuthLayout />,
-    children: [
-      {
-        path: "/login",
-        element: <Login />,
-      },
-    ],
-  },
+
   // Unauthorized Route
   {
     path: "/unauthorized",
     element: <Unauthorized />,
   },
 ]);
+
 export default router;

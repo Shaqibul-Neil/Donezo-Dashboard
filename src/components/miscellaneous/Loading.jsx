@@ -7,12 +7,12 @@ const Loading = () => {
   const location = useLocation();
 
   // 1. Dashboard Route Check
-  if (location.pathname === "/") {
+  if (location.pathname === "/dashboard") {
     return <DashboardSkeleton />;
   }
 
   // 2. Analytics Route Check
-  if (location.pathname === "/analytics") {
+  if (location.pathname === "/dashboard/analytics") {
     return <AnalyticsSection />;
   }
   // 3. General Global Loader (Login, Settings, or initial boot)

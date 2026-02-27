@@ -16,33 +16,37 @@ import downloadImg from "../../assets/download.webp";
 
 const Sidebar = () => {
   const menuItems = [
-    { icon: <LayoutGrid size={20} />, label: "Dashboard", path: "/" },
+    { icon: <LayoutGrid size={20} />, label: "Dashboard", path: "/dashboard" },
     {
       icon: <ClipboardCheck size={20} />,
       label: "Analytics",
-      path: "/analytics",
+      path: "/dashboard/analytics",
     },
     {
       icon: <Calendar size={20} />,
       label: "Calender",
-      path: "/calender",
+      path: "/dashboard/calender",
     },
     {
       icon: <Users size={20} />,
       label: "Users",
-      path: "/users",
+      path: "/dashboard/users",
     },
     {
       icon: <Bot size={20} />,
       label: "Products",
-      path: "/products",
+      path: "/dashboard/products",
     },
   ];
 
   const generalItems = [
-    { icon: <Settings size={20} />, label: "Settings", path: "/settings" },
-    { icon: <HelpCircle size={20} />, label: "Help", path: "/help" },
-    { icon: <LogOut size={20} />, label: "Logout", path: "/logout" },
+    {
+      icon: <Settings size={20} />,
+      label: "Settings",
+      path: "/dashboard/settings",
+    },
+    { icon: <HelpCircle size={20} />, label: "Help", path: "/dashboard/help" },
+    { icon: <LogOut size={20} />, label: "Logout" },
   ];
 
   return (

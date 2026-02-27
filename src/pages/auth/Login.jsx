@@ -4,6 +4,9 @@ import { Mail, Lock, ArrowRight } from "lucide-react";
 import Button from "../../components/button/Button";
 import LightPillar from "../../components/animations/LightPillar";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import useAuth from "../../hooks/auth/useAuth";
+import { useLocation, useNavigate } from "react-router";
 
 const Login = () => {
   const {
@@ -11,8 +14,41 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const { login, loading, setLoading } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location?.state?.from?.pathname || "/dashboard";
+  console.log(from);
+  const handleLogin = async (data) => {
+    try {
+      setLoading(true);
+      const userData = {
+        email: data.email.toLowerCase(),
+        password: data.password,
+      };
 
-  const handleLogin = (e) => e.preventDefault();
+      //calling the mother app's api
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/login`,
+        userData,
+      );
+      if (res.status === 200) {
+        const { token, ...rest } = res.data;
+        console.log("login res", rest);
+        login(rest, token);
+        console.log("success loading", loading);
+        //redirect
+        navigate(from, { replace: true });
+      }
+      console.log("success", res);
+    } catch (error) {
+      console.log("error loading", loading);
+      console.log(error);
+    } finally {
+      setLoading(false);
+      console.log("finally loading", loading);
+    }
+  };
 
   return (
     <div className="min-h-screen w-full relative overflow-hidden flex items-center justify-center p-6 selection:bg-[#006442] selection:text-white bg-[#FAFBFC]">

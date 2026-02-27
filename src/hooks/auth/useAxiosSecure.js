@@ -1,7 +1,53 @@
 import axios from "axios";
+import useAuth from "./useAuth";
+import { useNavigate } from "react-router";
+import { useEffect, useMemo } from "react";
 
 const useAxiosSecure = () => {
-  const axiosSecure = axios.create({ baseURL: import.meta.env.VITE_API_URL });
+  const { userToken, logout } = useAuth();
+  const navigate = useNavigate();
+
+  //create axios instance using use memo to prevent unnecessary recreation
+  const axiosSecure = useMemo(() => {
+    return axios.create({ baseURL: import.meta.env.VITE_API_URL });
+  }, []);
+
+  useEffect(() => {
+    // Add a request interceptor to attach token for every api call
+    const requestInterceptors = axiosSecure.interceptors.request.use(
+      (config) => {
+        if (userToken) {
+          config.headers.Authorization = `Bearer ${userToken}`;
+        }
+        return config;
+      },
+      (error) => {
+        return Promise.reject(error);
+      },
+    );
+
+    // response interceptor : error handle after api response
+    const responseInterceptors = axiosSecure.interceptors.response.use(
+      (response) => {
+        return response;
+      },
+      function onRejected(error) {
+        // error response handling
+        const status = error.response?.status;
+        console.log(error);
+        if (status === 401 || status === 403) {
+          logout();
+          navigate("/", { replace: true });
+        }
+        return Promise.reject(error);
+      },
+    );
+    //clean up
+    return () => {
+      axiosSecure.interceptors.request.eject(requestInterceptors);
+      axiosSecure.interceptors.response.eject(responseInterceptors);
+    };
+  }, [userToken, logout, navigate, axiosSecure]);
 
   return axiosSecure;
 };
