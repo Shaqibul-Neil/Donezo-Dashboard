@@ -4,8 +4,9 @@ import SectionHeader from "../headers/SectionHeader";
 import Button from "../button/Button";
 import { Plus, Crown, Rocket, BotMessageSquare, ChartLine } from "lucide-react";
 import ListHeader from "../headers/ListHeader";
+import AddProductsForm from "../forms/AddProductsForm";
 
-const ProductSection = ({ products }) => {
+const ProductSection = ({ products, openPanel, closePanel }) => {
   const iconConfig = [
     { icon: Crown, color: "text-blue-500" },
     { icon: Rocket, color: "text-teal-500" },
@@ -28,7 +29,12 @@ const ProductSection = ({ products }) => {
           icon={Plus}
           text="Add Product"
           className="w-32 h-6 lg:h-8 px-2"
-          onClick={() => console.log("New Product")}
+          onClick={() =>
+            openPanel(
+              "Add New Product",
+              <AddProductsForm onClose={closePanel} />,
+            )
+          }
         />
       </div>
 

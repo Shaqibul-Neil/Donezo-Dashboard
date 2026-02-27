@@ -1,8 +1,6 @@
 import React from "react";
-import { Plus } from "lucide-react";
-import Button from "../button/Button";
 
-const PageHeader = ({ title, subTitle }) => {
+const PageHeader = ({ title, subTitle, children }) => {
   return (
     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
       {/* Text Section */}
@@ -16,19 +14,7 @@ const PageHeader = ({ title, subTitle }) => {
       </div>
 
       {/* Button Actions */}
-      <div className="flex items-center gap-3">
-        <Button
-          variant="primary"
-          text="Add Product"
-          icon={Plus}
-          onClick={() => console.log("Add Project clicked")}
-        />
-        <Button
-          variant="secondary"
-          text="Import Data"
-          onClick={() => console.log("Import Data clicked")}
-        />
-      </div>
+      <div className="flex items-center gap-3">{children}</div>
     </div>
   );
 };

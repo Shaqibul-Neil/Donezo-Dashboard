@@ -18,11 +18,11 @@ const DashboardLayout = () => {
         </main>
       </div>
       {/* Sidebar */}
-      <div className="drawer-side z-50 xl:my-2 xl:ml-2 bg-white xl:rounded-2xl">
+      <div className="drawer-side z-50 xl:my-2 xl:ml-2 xl:rounded-2xl">
         <label
           htmlFor="my-drawer-4"
           aria-label="close sidebar"
-          className="drawer-overlay bg-black/20! backdrop-blur-[6px] transition-all duration-300"
+          className="drawer-overlay bg-black/20 backdrop-blur-[6px] transition-all duration-300"
         ></label>
         <Sidebar />
       </div>

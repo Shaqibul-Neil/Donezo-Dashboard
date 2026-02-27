@@ -7,6 +7,7 @@ const Button = ({
   variant = "primary",
   icon: Icon,
   className,
+  type = "button",
 }) => {
   const variants = {
     primary:
@@ -18,8 +19,9 @@ const Button = ({
   return (
     <button
       onClick={onClick}
+      type={type}
       className={cn(
-        "flex items-center gap-2 h-10 lg:h-12 rounded-full font-bold text-[14px] transition-all duration-300 active:scale-95 shadow-sm cursor-pointer justify-center",
+        "flex items-center gap-2 h-10 lg:h-12 rounded-full font-bold text-[14px] transition-all duration-500 active:scale-95 shadow-sm cursor-pointer justify-center hover:-translate-y-1",
         variants[variant],
         className,
       )}

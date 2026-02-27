@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { AnimatePresence, easeOut, motion } from "framer-motion";
 import PageHeader from "../../components/headers/PageHeader";
 import { useDashboard } from "../../hooks/dashboard/useDashboard";
@@ -11,8 +11,17 @@ import ProductSection from "../../components/dashboard/ProductSection";
 import UserSection from "../../components/dashboard/UserSection";
 import ProgressSection from "../../components/dashboard/ProgressSection";
 import TimeTracker from "../../components/dashboard/TimeTracker";
+import Button from "../../components/button/Button";
+import { Plus } from "lucide-react";
+import AddProductsForm from "../../components/forms/AddProductsForm";
+import SidePanel from "../../components/dashboard/Sidepanel";
 
 const Dashboard = () => {
+  const [panel, setPanel] = useState({
+    isOpen: false,
+    title: "",
+    content: null,
+  });
   const { dashboard, oLoading, oError } = useDashboard();
 
   if (oError) return <Error />;
@@ -20,6 +29,11 @@ const Dashboard = () => {
   const analytics = dashboard?.analytics || [];
   const users = dashboard?.users || [];
   const products = dashboard?.products || [];
+
+  //open close panel
+  const openPanel = (title, content) =>
+    setPanel({ isOpen: true, title, content });
+  const closePanel = () => setPanel({ ...panel, isOpen: false });
 
   return (
     <AnimatePresence mode="popLayout">
@@ -51,7 +65,24 @@ const Dashboard = () => {
             <PageHeader
               title="Dashboard"
               subTitle="Plan, prioritize, and accomplish your tasks with ease."
-            />
+            >
+              <Button
+                variant="primary"
+                text="Add Product"
+                icon={Plus}
+                onClick={() =>
+                  openPanel(
+                    "Add New Product",
+                    <AddProductsForm onClose={closePanel} />,
+                  )
+                }
+              />
+              <Button
+                variant="secondary"
+                text="Import Data"
+                onClick={() => console.log("Import Data clicked")}
+              />
+            </PageHeader>
           </motion.div>
 
           {/* Stat Card */}
@@ -75,7 +106,7 @@ const Dashboard = () => {
                 </div>
                 {/* reminder */}
                 <div className="col-span-1">
-                  <Reminders />
+                  <Reminders openPanel={openPanel} closePanel={closePanel} />
                 </div>
               </div>
 
@@ -83,7 +114,11 @@ const Dashboard = () => {
               <div className="flex gap-4 flex-col md:flex-row">
                 {/* products */}
                 <div className="md:w-1/2">
-                  <ProductSection products={products} />
+                  <ProductSection
+                    products={products}
+                    openPanel={openPanel}
+                    closePanel={closePanel}
+                  />
                 </div>
                 {/* progress */}
                 <div className="md:w-1/2">
@@ -96,7 +131,11 @@ const Dashboard = () => {
             <div className="space-y-4 flex xl:flex-col flex-col  md:flex-row md:gap-4 xl:gap-0 items-start">
               {/* user */}
               <div className="md:w-1/2 xl:w-full w-full">
-                <UserSection users={users} />
+                <UserSection
+                  openPanel={openPanel}
+                  closePanel={closePanel}
+                  users={users}
+                />
               </div>
               <div className="md:w-1/2 xl:w-full w-full">
                 <TimeTracker />
@@ -105,6 +144,9 @@ const Dashboard = () => {
           </div>
         </motion.div>
       )}
+      <SidePanel isOpen={panel.isOpen} onClose={closePanel} title={panel.title}>
+        {panel.content}
+      </SidePanel>
     </AnimatePresence>
   );
 };

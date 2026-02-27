@@ -5,8 +5,9 @@ import { Plus } from "lucide-react";
 import SectionHeader from "../headers/SectionHeader";
 import StatusBadge from "../miscellaneous/StatusBadge";
 import ListHeader from "../headers/ListHeader";
+import AddUserForm from "../forms/AddUserForm";
 
-const UserSection = ({ users }) => {
+const UserSection = ({ users, openPanel, closePanel }) => {
   return (
     <motion.div
       className="box-style space-y-4"
@@ -22,7 +23,9 @@ const UserSection = ({ users }) => {
           icon={Plus}
           text="Add User"
           className="w-28 h-6 lg:h-8 px-2"
-          onClick={() => console.log("New user")}
+          onClick={() =>
+            openPanel("Add New User", <AddUserForm onClose={closePanel} />)
+          }
         />
       </div>
 
