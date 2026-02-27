@@ -3,13 +3,20 @@ import { motion } from "framer-motion";
 import { Mail, Lock, ArrowRight } from "lucide-react";
 import Button from "../../components/button/Button";
 import LightPillar from "../../components/animations/LightPillar";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
   const handleLogin = (e) => e.preventDefault();
 
   return (
     <div className="min-h-screen w-full relative overflow-hidden flex items-center justify-center p-6 selection:bg-[#006442] selection:text-white bg-[#FAFBFC]">
-      {/* 1. High-Motion Background Animation - Optimized for White Screen */}
+      {/* High-Motion Background Animation */}
       <div className="absolute inset-0 z-10">
         <LightPillar
           topColor="#006442"
@@ -28,7 +35,7 @@ const Login = () => {
         {/* Transparent layering for depth */}
       </div>
 
-      {/* 2. Ultra-Minimalist Transparent Login Form - Dark Green Accents */}
+      {/* Transparent Login Form */}
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -50,46 +57,68 @@ const Login = () => {
         </div>
 
         <form
-          className="w-full space-y-10"
-          onSubmit={handleLogin}
+          className="w-full"
+          onSubmit={handleSubmit(handleLogin)}
           autoComplete="off"
         >
           {/* Email Input - Dark Green Theme */}
-          <div className="relative group border-b-2 border-[#002B1B]/10 focus-within:border-[#002B1B] transition-all duration-500">
-            <Mail
-              className="absolute left-0 top-1/2 -translate-y-1/2 text-[#002B1B]/20 group-focus-within:text-[#006442] transition-colors"
-              size={14}
-            />
-            <input
-              type="email"
-              placeholder="EMAIL"
-              autoComplete="off"
-              className="w-full bg-transparent border-none py-3 pl-8 pr-2 text-[12px] font-bold text-[#002B1B] focus:outline-none placeholder:text-[#002B1B]/40 tracking-[0.2em] transition-all"
-            />
+          <div className="space-y-1 text-left">
+            <label className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">
+              Email Address
+            </label>
+            <div className="relative">
+              <Mail
+                className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400"
+                size={18}
+              />
+              <input
+                type="email"
+                placeholder="Enter your email"
+                autoComplete="off"
+                {...register("email", {
+                  required: "Email is required",
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: "Invalid email format",
+                  },
+                })}
+                className="w-full bg-white/40 border border-gray-100 rounded-2xl p-4 pl-14 text-sm focus:outline-none focus:ring-1 focus:ring-[#006442] shadow-sm text-gray-600 placeholder:text-gray-400"
+              />
+            </div>
+            {errors.email && (
+              <p className="error-message">{errors.email.message}</p>
+            )}
           </div>
 
           {/* Password Input - Dark Green Theme */}
-          <div className="relative group border-b-2 border-[#002B1B]/10 focus-within:border-[#002B1B] transition-all duration-500">
-            <Lock
-              className="absolute left-0 top-1/2 -translate-y-1/2 text-[#002B1B]/20 group-focus-within:text-[#006442] transition-colors"
-              size={14}
-            />
-            <input
-              type="password"
-              placeholder="PASSWORD"
-              className="w-full bg-transparent border-none py-3 pl-8 pr-2 text-[12px] font-bold text-[#002B1B] focus:outline-none placeholder:text-[#002B1B]/10 uppercase tracking-[0.2em]"
-            />
+          <div className="space-y-1 text-left my-6">
+            <label className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">
+              Password
+            </label>
+            <div className="relative flex items-center">
+              <Lock className="absolute left-5 text-gray-400 z-10" size={18} />
+              <input
+                type="password"
+                autoComplete="off"
+                placeholder="Enter your password"
+                {...register("password", { required: "Password is required" })}
+                className="w-full bg-white/40 border border-gray-100 rounded-2xl p-4 pl-14 text-sm focus:outline-none focus:ring-1 focus:ring-[#006442] shadow-sm text-gray-600 placeholder:text-gray-400"
+              />
+            </div>
+            {errors.password && (
+              <p className="error-message">{errors.password.message}</p>
+            )}
           </div>
 
-          {/* Secondary Variant Button */}
-          <div className="pt-8 w-full">
-            <Button
-              text="Login"
-              variant="secondary"
-              className="w-full h-12 rounded-full font-black hover:bg-[#002B1B] hover:text-white transition-all duration-500 border-2 border-[#002B1B]/20 text-lg"
-              icon={ArrowRight}
-            />
-          </div>
+          {/* Button */}
+
+          <Button
+            text="Login"
+            type="submit"
+            variant="primary"
+            className="h-13 lg:h-13 font-black text-lg mt-10 mx-auto w-full rounded-2xl"
+            icon={ArrowRight}
+          />
         </form>
       </motion.div>
     </div>
