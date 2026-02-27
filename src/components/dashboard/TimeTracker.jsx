@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { easeOut, motion } from "framer-motion";
+import React, { memo, useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import SectionHeader from "../headers/SectionHeader";
 import { Pause, Play, Square } from "lucide-react";
 import trackerImg from "../../assets/tracker.webp";
 
-const TimeTracker = () => {
+const TimeTracker = memo(() => {
   const [time, setTime] = useState(0);
   const [isActive, setIsActive] = useState(true);
 
@@ -80,6 +80,6 @@ const TimeTracker = () => {
       </div>
     </motion.div>
   );
-};
+});
 
 export default TimeTracker;

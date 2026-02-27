@@ -1,10 +1,10 @@
-import React from "react";
+import React, { memo } from "react";
 import { motion } from "framer-motion";
 import { Video } from "lucide-react";
 import Button from "../button/Button";
 import SectionHeader from "../headers/SectionHeader";
 
-const Reminders = ({ setIsMeetingOpen }) => {
+const Reminders = memo(({ setIsMeetingOpen }) => {
   return (
     <motion.div
       className="box-style space-y-4"
@@ -38,6 +38,6 @@ const Reminders = ({ setIsMeetingOpen }) => {
       </div>
     </motion.div>
   );
-};
+});
 
 export default Reminders;

@@ -1,10 +1,10 @@
-import React from "react";
+import React, { memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { Video, X } from "lucide-react";
 import Button from "../button/Button";
 
-const MeetingForm = ({ isOpen, onClose }) => {
+const MeetingForm = memo(({ isOpen, onClose }) => {
   const {
     register,
     handleSubmit,
@@ -98,6 +98,6 @@ const MeetingForm = ({ isOpen, onClose }) => {
       )}
     </AnimatePresence>
   );
-};
+});
 
 export default MeetingForm;

@@ -1,5 +1,5 @@
-import React from "react";
-import { easeOut, motion } from "framer-motion";
+import React, { memo } from "react";
+import { motion } from "framer-motion";
 import Button from "../button/Button";
 import { Plus } from "lucide-react";
 import SectionHeader from "../headers/SectionHeader";
@@ -7,7 +7,7 @@ import StatusBadge from "../miscellaneous/StatusBadge";
 import ListHeader from "../headers/ListHeader";
 import AddUserForm from "../forms/AddUserForm";
 
-const UserSection = ({ users, openPanel, closePanel }) => {
+const UserSection = memo(({ users, openPanel, closePanel }) => {
   return (
     <motion.div
       className="box-style space-y-4"
@@ -44,6 +44,7 @@ const UserSection = ({ users, openPanel, closePanel }) => {
                 <img
                   src={avatarUrl}
                   alt={user?.name}
+                  loading="lazy"
                   className="w-full h-full object-cover"
                   onError={(e) => {
                     e.target.src = `https://ui-avatars.com/api/?name=${user?.name}&background=002B1B&color=fff`;
@@ -67,6 +68,6 @@ const UserSection = ({ users, openPanel, closePanel }) => {
       </div>
     </motion.div>
   );
-};
+});
 
 export default UserSection;

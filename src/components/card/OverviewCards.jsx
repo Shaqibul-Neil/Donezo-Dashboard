@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import { easeOut, motion } from "framer-motion";
 import StatCard from "./StatCard";
 
-const OverviewCards = ({ overview }) => {
+const OverviewCards = memo(({ overview }) => {
   const { totalUsers, activeUsers, revenue, growth } = overview || {};
   const statsData = [
     {
@@ -60,6 +60,6 @@ const OverviewCards = ({ overview }) => {
       ))}
     </motion.div>
   );
-};
+});
 
 export default OverviewCards;

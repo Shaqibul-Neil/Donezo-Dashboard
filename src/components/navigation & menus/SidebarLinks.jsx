@@ -1,7 +1,7 @@
-import React from "react";
+import React, { memo } from "react";
 import { NavLink } from "react-router";
 
-const SidebarLinks = ({ to, label, icon, badge, onClick }) => {
+const SidebarLinks = memo(({ to, label, icon, badge, onClick }) => {
   // Common style class
   const commonStyles =
     "flex items-center justify-between w-full px-4 py-2 rounded-2xl cursor-pointer transition-all duration-400 group relative text-[#868988] hover:bg-gray-50 hover:text-[#006442]";
@@ -54,6 +54,6 @@ const SidebarLinks = ({ to, label, icon, badge, onClick }) => {
       )}
     </NavLink>
   );
-};
+});
 
 export default SidebarLinks;

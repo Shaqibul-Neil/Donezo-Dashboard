@@ -1,9 +1,9 @@
-import React from "react";
-import { easeOut, motion } from "framer-motion";
+import React, { memo } from "react";
+import { motion } from "framer-motion";
 import SectionHeader from "../headers/SectionHeader";
 import AnalyticsBarChart from "../chart/AnalyticsBarChart";
 
-const AnalyticsSection = ({ analytics }) => {
+const AnalyticsSection = memo(({ analytics }) => {
   return (
     <motion.div
       className="box-style space-y-4"
@@ -17,6 +17,6 @@ const AnalyticsSection = ({ analytics }) => {
       <AnalyticsBarChart analytics={analytics} />
     </motion.div>
   );
-};
+});
 
 export default AnalyticsSection;

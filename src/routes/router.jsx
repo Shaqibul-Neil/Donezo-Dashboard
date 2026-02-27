@@ -1,17 +1,21 @@
+import React, { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router";
 import DashboardLayout from "../layout/DashboardLayout";
 import NotFound from "../components/miscellaneous/NotFound";
-import Dashboard from "../pages/dashboard/Dashboard";
 import AuthLayout from "../layout/AuthLayout";
-import Login from "../pages/auth/Login";
 import Unauthorized from "../components/miscellaneous/Unauthorized";
-import Analytics from "../pages/dashboard/Analytics";
-import Products from "../pages/dashboard/Products";
-import Users from "../pages/dashboard/Users";
-import Settings from "../pages/dashboard/Settings";
-import Help from "../pages/dashboard/Help";
-import Calender from "../pages/dashboard/Calender";
 import PrivateRoute from "./PrivateRoute";
+import Loading from "../components/miscellaneous/Loading";
+
+// Lazy loading components
+const Dashboard = lazy(() => import("../pages/dashboard/Dashboard"));
+const Analytics = lazy(() => import("../pages/dashboard/Analytics"));
+const Products = lazy(() => import("../pages/dashboard/Products"));
+const Users = lazy(() => import("../pages/dashboard/Users"));
+const Settings = lazy(() => import("../pages/dashboard/Settings"));
+const Help = lazy(() => import("../pages/dashboard/Help"));
+const Calender = lazy(() => import("../pages/dashboard/Calender"));
+const Login = lazy(() => import("../pages/auth/Login"));
 
 const router = createBrowserRouter([
   //authentication route
@@ -21,7 +25,11 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Login />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Login />
+          </Suspense>
+        ),
       },
     ],
   },
@@ -37,31 +45,59 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Dashboard />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Dashboard />
+          </Suspense>
+        ),
       },
       {
         path: "analytics",
-        element: <Analytics />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Analytics />
+          </Suspense>
+        ),
       },
       {
         path: "calender",
-        element: <Calender />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Calender />,
+          </Suspense>
+        ),
       },
       {
         path: "products",
-        element: <Products />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Products />
+          </Suspense>
+        ),
       },
       {
         path: "users",
-        element: <Users />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Users />
+          </Suspense>
+        ),
       },
       {
         path: "settings",
-        element: <Settings />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Settings />
+          </Suspense>
+        ),
       },
       {
         path: "help",
-        element: <Help />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Help />
+          </Suspense>
+        ),
       },
     ],
   },

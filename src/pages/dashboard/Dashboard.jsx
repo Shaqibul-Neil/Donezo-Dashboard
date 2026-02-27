@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { lazy, Suspense, useCallback, useState } from "react";
+import { Plus } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import PageHeader from "../../components/headers/PageHeader";
 import { useDashboard } from "../../hooks/dashboard/useDashboard";
@@ -12,10 +13,13 @@ import UserSection from "../../components/dashboard/UserSection";
 import ProgressSection from "../../components/dashboard/ProgressSection";
 import TimeTracker from "../../components/dashboard/TimeTracker";
 import Button from "../../components/button/Button";
-import { Plus } from "lucide-react";
-import AddProductsForm from "../../components/forms/AddProductsForm";
 import SidePanel from "../../components/dashboard/Sidepanel";
-import MeetingForm from "../../components/forms/MeetingForm";
+
+// Component Level Lazy Loading (For Optimization)
+const AddProductsForm = lazy(
+  () => import("../../components/forms/AddProductsForm"),
+);
+const MeetingForm = lazy(() => import("../../components/forms/MeetingForm"));
 
 const Dashboard = () => {
   const [panel, setPanel] = useState({
@@ -24,18 +28,19 @@ const Dashboard = () => {
     content: null,
   });
   const [isMeetingOpen, setIsMeetingOpen] = useState(false);
-  const { dashboard, oLoading, oError } = useDashboard();
+
+  const { overview, analytics, users, products, oLoading, oError } =
+    useDashboard();
+  //open close panel
+  const openPanel = useCallback((title, content) => {
+    setPanel({ isOpen: true, title, content });
+  }, []);
+
+  const closePanel = useCallback(() => {
+    setPanel((prev) => ({ ...prev, isOpen: false }));
+  }, []);
 
   if (oError) return <Error />;
-  const overview = dashboard?.overview || {};
-  const analytics = dashboard?.analytics || [];
-  const users = dashboard?.users || [];
-  const products = dashboard?.products || [];
-
-  //open close panel
-  const openPanel = (title, content) =>
-    setPanel({ isOpen: true, title, content });
-  const closePanel = () => setPanel({ ...panel, isOpen: false });
 
   return (
     <>
@@ -76,7 +81,11 @@ const Dashboard = () => {
                   onClick={() =>
                     openPanel(
                       "Add New Product",
-                      <AddProductsForm onClose={closePanel} />,
+                      <Suspense
+                        fallback={<div className="p-4">Loading Form...</div>}
+                      >
+                        <AddProductsForm onClose={closePanel} />
+                      </Suspense>,
                     )
                   }
                 />
@@ -149,14 +158,20 @@ const Dashboard = () => {
         )}
       </AnimatePresence>
       {/* Modal for meeting */}
-      <MeetingForm
-        isOpen={isMeetingOpen}
-        onClose={() => setIsMeetingOpen(false)}
-      />
-      {/* Side Panel for form data*/}
-      <SidePanel isOpen={panel.isOpen} onClose={closePanel} title={panel.title}>
-        {panel.content}
-      </SidePanel>
+      <Suspense fallback={null}>
+        <MeetingForm
+          isOpen={isMeetingOpen}
+          onClose={() => setIsMeetingOpen(false)}
+        />
+        {/* Side Panel for form data*/}
+        <SidePanel
+          isOpen={panel.isOpen}
+          onClose={closePanel}
+          title={panel.title}
+        >
+          {panel.content}
+        </SidePanel>
+      </Suspense>
     </>
   );
 };

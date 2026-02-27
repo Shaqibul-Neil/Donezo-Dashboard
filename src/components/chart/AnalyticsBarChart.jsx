@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import {
   BarChart,
   Bar,
@@ -12,7 +12,7 @@ import { CustomTooltip } from "./CustomToolTip";
 import StripedBg from "../miscellaneous/StripedBg";
 import { CustomBar } from "./CustomShapes";
 
-const AnalyticsBarChart = ({ analytics }) => {
+const AnalyticsBarChart = memo(({ analytics }) => {
   const conversionData = analytics.map((data) => data.conversions).sort();
 
   const daysOfTheWeek = ["S", "M", "T", "W", "T", "F", "S"];
@@ -87,6 +87,6 @@ const AnalyticsBarChart = ({ analytics }) => {
       </ResponsiveContainer>
     </div>
   );
-};
+});
 
 export default AnalyticsBarChart;

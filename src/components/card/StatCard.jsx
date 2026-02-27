@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import { ArrowUpRight, ChevronUp } from "lucide-react";
 import SectionHeader from "../headers/SectionHeader";
 
-const StatCard = ({ title, value, isPrimary = false }) => {
+const StatCard = memo(({ title, value, isPrimary = false }) => {
   return (
     <div
       className={`relative transform transition-all group cursor-pointer duration-700 hover:scale-101 hover:-translate-y-3 box-style ${
@@ -63,6 +63,6 @@ const StatCard = ({ title, value, isPrimary = false }) => {
       </div>
     </div>
   );
-};
+});
 
 export default StatCard;

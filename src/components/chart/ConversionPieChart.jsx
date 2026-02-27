@@ -1,10 +1,10 @@
-import React from "react";
+import React, { memo } from "react";
 import { Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 import StripedBg from "../miscellaneous/StripedBg";
 import { CustomPie } from "./CustomShapes";
 import { useMobile } from "../../hooks/useMobile";
 
-const ConversionPieChart = ({ data, conversionRate }) => {
+const ConversionPieChart = memo(({ data, conversionRate }) => {
   const { isMobile } = useMobile();
   return (
     <div className="md:w-full w-[90%] h-52 relative mx-auto">
@@ -56,6 +56,6 @@ const ConversionPieChart = ({ data, conversionRate }) => {
       </div>
     </div>
   );
-};
+});
 
 export default ConversionPieChart;
