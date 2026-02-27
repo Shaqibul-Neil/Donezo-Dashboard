@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AnimatePresence, easeOut, motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import PageHeader from "../../components/headers/PageHeader";
 import { useDashboard } from "../../hooks/dashboard/useDashboard";
 import Loading from "../../components/miscellaneous/Loading";
@@ -15,6 +15,7 @@ import Button from "../../components/button/Button";
 import { Plus } from "lucide-react";
 import AddProductsForm from "../../components/forms/AddProductsForm";
 import SidePanel from "../../components/dashboard/Sidepanel";
+import MeetingForm from "../../components/forms/MeetingForm";
 
 const Dashboard = () => {
   const [panel, setPanel] = useState({
@@ -22,6 +23,7 @@ const Dashboard = () => {
     title: "",
     content: null,
   });
+  const [isMeetingOpen, setIsMeetingOpen] = useState(false);
   const { dashboard, oLoading, oError } = useDashboard();
 
   if (oError) return <Error />;
@@ -106,7 +108,7 @@ const Dashboard = () => {
                 </div>
                 {/* reminder */}
                 <div className="col-span-1">
-                  <Reminders openPanel={openPanel} closePanel={closePanel} />
+                  <Reminders setIsMeetingOpen={setIsMeetingOpen} />
                 </div>
               </div>
 
@@ -144,6 +146,12 @@ const Dashboard = () => {
           </div>
         </motion.div>
       )}
+      {/* Modal for meeting */}
+      <MeetingForm
+        isOpen={isMeetingOpen}
+        onClose={() => setIsMeetingOpen(false)}
+      />
+      {/* Side Panel for form data*/}
       <SidePanel isOpen={panel.isOpen} onClose={closePanel} title={panel.title}>
         {panel.content}
       </SidePanel>

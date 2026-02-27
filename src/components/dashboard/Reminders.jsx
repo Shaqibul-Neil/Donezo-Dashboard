@@ -1,10 +1,10 @@
 import React from "react";
-import { easeOut, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Video } from "lucide-react";
 import Button from "../button/Button";
 import SectionHeader from "../headers/SectionHeader";
 
-const Reminders = () => {
+const Reminders = ({ setIsMeetingOpen }) => {
   return (
     <motion.div
       className="box-style space-y-4"
@@ -33,7 +33,7 @@ const Reminders = () => {
           variant="primary"
           icon={Video}
           className="w-full"
-          onClick={() => console.log("Meeting Started")}
+          onClick={() => setIsMeetingOpen(true)}
         />
       </div>
     </motion.div>
