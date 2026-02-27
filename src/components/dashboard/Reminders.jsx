@@ -1,11 +1,17 @@
 import React from "react";
+import { easeOut, motion } from "framer-motion";
 import { Video } from "lucide-react";
 import Button from "../button/Button";
 import SectionHeader from "../headers/SectionHeader";
 
 const Reminders = () => {
   return (
-    <div className="box-style space-y-4">
+    <motion.div
+      className="box-style space-y-4"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.2, duration: 0.5 }}
+    >
       {/* Title Area */}
 
       <SectionHeader className="pt-1">Reminders</SectionHeader>
@@ -30,7 +36,7 @@ const Reminders = () => {
           onClick={() => console.log("Meeting Started")}
         />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

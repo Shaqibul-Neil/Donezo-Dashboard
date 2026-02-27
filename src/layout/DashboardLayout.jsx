@@ -13,16 +13,16 @@ const DashboardLayout = () => {
           <Navbar />
         </div>
         {/* Page content */}
-        <main className="flex-1 overflow-y-auto overflow-x-hidden md:p-4 p-2 bg-[#FAFBFC] md:mx-4 mx-2 mt-4 rounded-2xl">
+        <main className="flex-1 overflow-y-auto overflow-x-hidden md:p-4 p-2 bg-[#FAFBFC] md:mx-4 mx-2 mt-4 rounded-2xl max-w-full">
           <Outlet />
         </main>
       </div>
       {/* Sidebar */}
-      <div className="drawer-side z-50 my-2 ml-2 bg-white rounded-2xl">
+      <div className="drawer-side z-50 xl:my-2 xl:ml-2 bg-white xl:rounded-2xl">
         <label
           htmlFor="my-drawer-4"
           aria-label="close sidebar"
-          className="drawer-overlay"
+          className="drawer-overlay bg-black/20! backdrop-blur-[6px] transition-all duration-300"
         ></label>
         <Sidebar />
       </div>

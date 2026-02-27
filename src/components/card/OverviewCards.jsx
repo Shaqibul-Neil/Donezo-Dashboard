@@ -33,7 +33,7 @@ const OverviewCards = ({ overview }) => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15, //time gap
+        staggerChildren: 0.3, //time gap
       },
     },
   };

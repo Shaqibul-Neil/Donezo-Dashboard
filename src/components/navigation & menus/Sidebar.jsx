@@ -46,7 +46,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside className="w-64 bg-[#FAFBFC] min-h-screen flex flex-col border-r border-gray-100 py-4 relative rounded-2xl">
+    <aside className="w-64 bg-[#FAFBFC] min-h-screen flex flex-col border-r border-gray-100 py-4 relative xl:rounded-2xl">
       {/* Logo Section */}
       <div className="mb-8 px-8">
         <img src="/src/assets/logo.png" />

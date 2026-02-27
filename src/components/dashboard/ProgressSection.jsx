@@ -1,4 +1,5 @@
 import React from "react";
+import { easeOut, motion } from "framer-motion";
 import SectionHeader from "../headers/SectionHeader";
 import { sumOfItems } from "../../lib/utils";
 import ConversionPieChart from "../chart/ConversionPieChart";
@@ -29,7 +30,12 @@ const ProgressSection = ({ analytics }) => {
   ];
 
   return (
-    <div className="box-style">
+    <motion.div
+      className="box-style"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.2, duration: 0.5 }}
+    >
       {/* Title Area */}
       <SectionHeader className="pt-1">Product Progress</SectionHeader>
       {/* User chart */}
@@ -49,7 +55,7 @@ const ProgressSection = ({ analytics }) => {
           <p className="text-sm text-[#002B1B]">Views</p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

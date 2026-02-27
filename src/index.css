@@ -16,7 +16,11 @@
     "Outfit", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
-
+html {
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
 /* common section style */
 .box-style {
   @apply bg-white p-4 rounded-2xl border border-gray-50 h-full flex flex-col justify-between shadow-sm;

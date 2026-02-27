@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Search, Mail, Bell, Command, Menu } from "lucide-react";
+import { DropdownContainer } from "./DropDwonContainer";
 
 const Navbar = () => {
+  const [showMail, setShowMail] = useState(false);
+  const [showBell, setShowBell] = useState(false);
+
   return (
     <nav className="w-full flex items-center justify-between md:p-4 p-2 bg-[#FAFBFC] border border-gray-100 rounded-2xl">
       {/* Left side - Toggle Button + Search */}
@@ -21,7 +26,7 @@ const Navbar = () => {
             placeholder="Search Products"
             className="w-full bg-white border border-gray-100 rounded-2xl py-3.5 pl-14 pr-16 text-[14px] focus:outline-none focus:ring-1 focus:ring-[#006442] shadow-sm text-gray-600 placeholder:text-gray-400"
           />
-          <div className="absolute right-4 flex items-center gap-1 bg-gray-50 border border-gray-100 px-2 py-1 rounded-lg text-gray-400 text-[11px] font-bold">
+          <div className="absolute right-4 flex items-center gap-1 bg-gray-200 border border-gray-100 px-2 py-1 rounded-lg text-gray-600 text-[11px] font-bold">
             <Command size={10} />
             <span>F</span>
           </div>
@@ -31,13 +36,49 @@ const Navbar = () => {
       {/* Right Actions */}
       <div className="flex items-center gap-3">
         <div className="flex items-center gap-3">
-          <button className="w-11 h-11 bg-white border border-gray-100 rounded-full flex items-center justify-center text-gray-500 hover:text-[#006442] transition-colors shadow-sm">
-            <Mail size={20} />
-          </button>
-          <button className="w-11 h-11 bg-white border border-gray-100 rounded-full flex items-center justify-center text-gray-500 hover:text-[#006442] transition-colors shadow-sm relative">
-            <Bell size={20} />
-            <div className="absolute top-0 right-0 w-2.5 h-2.5 bg-red-500 border-2 border-white rounded-full"></div>
-          </button>
+          {/* Mail DropDown */}
+          <div className="relative">
+            <button
+              className="w-11 h-11 bg-white border border-gray-100 rounded-full flex items-center justify-center text-gray-500 hover:text-[#006442] transition-colors shadow-sm cursor-pointer"
+              onMouseEnter={() => {
+                setShowMail(true);
+                setShowBell(false);
+              }}
+              onMouseLeave={() => {
+                setShowMail(false);
+              }}
+            >
+              <Mail size={20} />
+            </button>
+            <DropdownContainer
+              isOpen={showMail}
+              icon={Mail}
+              title="No new messages"
+              subTitle="Check back later!"
+            />
+          </div>
+
+          {/* Bell DropDown */}
+          <div className="relative">
+            <button
+              className="w-11 h-11 bg-white border border-gray-100 rounded-full flex items-center justify-center text-gray-500 hover:text-[#006442] transition-colors shadow-sm relative cursor-pointer"
+              onMouseEnter={() => {
+                setShowBell(true);
+                setShowMail(false);
+              }}
+              onMouseLeave={() => {
+                setShowBell(false);
+              }}
+            >
+              <Bell size={20} />
+            </button>
+            <DropdownContainer
+              isOpen={showBell}
+              icon={Bell}
+              title="No new notifications"
+              subTitle="You're all caught up!"
+            />
+          </div>
         </div>
 
         {/* User Profile */}

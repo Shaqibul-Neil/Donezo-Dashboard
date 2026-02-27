@@ -1,4 +1,5 @@
 import React from "react";
+import { easeOut, motion } from "framer-motion";
 import Button from "../button/Button";
 import { Plus } from "lucide-react";
 import SectionHeader from "../headers/SectionHeader";
@@ -7,7 +8,12 @@ import ListHeader from "../headers/ListHeader";
 
 const UserSection = ({ users }) => {
   return (
-    <div className="box-style space-y-4">
+    <motion.div
+      className="box-style space-y-4"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.3, duration: 0.5 }}
+    >
       {/* Title Area */}
       <div className="flex justify-between items-center">
         <SectionHeader>Users</SectionHeader>
@@ -48,7 +54,7 @@ const UserSection = ({ users }) => {
                   {user?.email}
                 </p>
               </div>
-              {/* Status Badge */}
+              {/* Status */}
               <div
                 className={`shrink-0 w-2 h-2 rounded-2xl ${user?.status === "active" ? "bg-green-700" : "bg-[#E53935]"}`}
               ></div>
@@ -56,7 +62,7 @@ const UserSection = ({ users }) => {
           );
         })}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

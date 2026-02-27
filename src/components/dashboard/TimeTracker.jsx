@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { easeOut, motion } from "framer-motion";
 import SectionHeader from "../headers/SectionHeader";
 import { Pause, Play, Square } from "lucide-react";
 import trackerImg from "../../assets/tracker.webp";
@@ -35,8 +36,11 @@ const TimeTracker = () => {
   //console.log(time);
 
   return (
-    <div
+    <motion.div
       className="box-style space-y-5.5 relative bg-center"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.3, duration: 0.5 }}
       style={{ backgroundImage: `url(${trackerImg})` }}
     >
       {/* Dark Overlay */}
@@ -74,7 +78,7 @@ const TimeTracker = () => {
           <Square size={18} fill="white" className="text-white" />
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
