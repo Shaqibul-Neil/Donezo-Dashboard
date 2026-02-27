@@ -24,7 +24,7 @@ const UserSection = ({ users }) => {
       <div className="space-y-4">
         {users?.map((user) => {
           //generating the image path
-          const avatarUrl = `/src/assets/${user.name}.webp`;
+          const avatarUrl = `/${user.name}.webp`;
           return (
             <div
               key={user?.id}

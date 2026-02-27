@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SectionHeader from "../headers/SectionHeader";
 import { Pause, Play, Square } from "lucide-react";
+import trackerImg from "../../assets/tracker.webp";
 
 const TimeTracker = () => {
   const [time, setTime] = useState(0);
@@ -34,7 +35,10 @@ const TimeTracker = () => {
   //console.log(time);
 
   return (
-    <div className="box-style space-y-5.5 relative bg-[url(/src/assets/tracker.webp)] bg-center">
+    <div
+      className="box-style space-y-5.5 relative bg-center"
+      style={{ backgroundImage: `url(${trackerImg})` }}
+    >
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/30 rounded-2xl h-full z-9"></div>
 

@@ -64,7 +64,7 @@ const Dashboard = () => {
           <div className="md:w-1/2 xl:w-full">
             <UserSection users={users} />
           </div>
-          <div className="">
+          <div className="md:w-1/2 xl:w-full">
             <TimeTracker />
           </div>
         </div>
