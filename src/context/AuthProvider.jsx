@@ -17,7 +17,7 @@ const AuthProvider = ({ children }) => {
     Cookies.set("token", token, { expires: 7 });
     setUserToken(token);
     //user info save in ls
-    console.log(token);
+
     localStorage.setItem("user-info", JSON.stringify(userInfo));
     setUser(userInfo);
   };

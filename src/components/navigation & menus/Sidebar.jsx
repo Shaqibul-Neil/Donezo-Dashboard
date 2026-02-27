@@ -13,8 +13,11 @@ import {
 import SidebarLinks from "./SidebarLinks";
 import Button from "../button/Button";
 import downloadImg from "../../assets/download.webp";
+import useAuth from "../../hooks/auth/useAuth";
+import { toast } from "sonner";
 
 const Sidebar = () => {
+  const { logout } = useAuth();
   const menuItems = [
     { icon: <LayoutGrid size={20} />, label: "Dashboard", path: "/dashboard" },
     {
@@ -46,9 +49,13 @@ const Sidebar = () => {
       path: "/dashboard/settings",
     },
     { icon: <HelpCircle size={20} />, label: "Help", path: "/dashboard/help" },
-    { icon: <LogOut size={20} />, label: "Logout" },
+    { icon: <LogOut size={20} />, label: "Logout", path: "/" },
   ];
 
+  const handleLogout = () => {
+    toast.success("Logged out Successfully");
+    logout();
+  };
   return (
     <aside className="w-64 bg-[#FAFBFC] min-h-screen flex flex-col border-r border-gray-100 py-4 relative xl:rounded-2xl">
       {/* Logo Section */}
@@ -86,6 +93,7 @@ const Sidebar = () => {
               to={item.path}
               label={item.label}
               icon={item.icon}
+              onClick={handleLogout}
             />
           ))}
         </nav>

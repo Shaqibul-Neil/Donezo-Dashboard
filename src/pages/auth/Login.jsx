@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import useAuth from "../../hooks/auth/useAuth";
 import { useLocation, useNavigate } from "react-router";
+import { toast } from "sonner";
 
 const Login = () => {
   const {
@@ -14,11 +15,11 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { login, loading, setLoading } = useAuth();
+  const { login, setLoading } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const from = location?.state?.from?.pathname || "/dashboard";
-  console.log(from);
+
   const handleLogin = async (data) => {
     try {
       setLoading(true);
@@ -26,27 +27,37 @@ const Login = () => {
         email: data.email.toLowerCase(),
         password: data.password,
       };
+      toast.promise(
+        axios.post(`${import.meta.env.VITE_API_URL}/api/login`, userData),
+        {
+          loading: "Authenticating...",
+          success: (res) => {
+            const { token, ...rest } = res.data;
+            login(rest, token);
+            navigate(from, { replace: true });
 
-      //calling the mother app's api
-      const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/login`,
-        userData,
+            //welcome message after login message
+            setTimeout(() => {
+              toast.success(`Welcome back, ${rest?.email.split("@")[0]}!`, {
+                description: "Glad to see you again.",
+                icon: "👋",
+              });
+            }, 500);
+
+            return "Logged in successfully!";
+          },
+          error: (err) => {
+            return (
+              err.response?.data?.message ||
+              "Login failed. Please check your credentials."
+            );
+          },
+        },
       );
-      if (res.status === 200) {
-        const { token, ...rest } = res.data;
-        console.log("login res", rest);
-        login(rest, token);
-        console.log("success loading", loading);
-        //redirect
-        navigate(from, { replace: true });
-      }
-      console.log("success", res);
     } catch (error) {
-      console.log("error loading", loading);
-      console.log(error);
+      toast.warning(error.message);
     } finally {
       setLoading(false);
-      console.log("finally loading", loading);
     }
   };
 

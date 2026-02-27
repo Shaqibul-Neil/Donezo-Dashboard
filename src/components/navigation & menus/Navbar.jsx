@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Mail, Bell, Command, Menu } from "lucide-react";
 import { DropdownContainer } from "./DropDwonContainer";
+import useAuth from "../../hooks/auth/useAuth";
 
 const Navbar = () => {
   const [showMail, setShowMail] = useState(false);
   const [showBell, setShowBell] = useState(false);
+  const { user } = useAuth();
+  console.log(user);
 
   return (
     <nav className="w-full flex items-center justify-between md:p-4 p-2 bg-[#FAFBFC] border border-gray-100 rounded-2xl">
@@ -91,11 +94,11 @@ const Navbar = () => {
             />
           </div>
           <div className="md:flex flex-col hidden">
-            <span className="text-[15px] font-bold text-gray-800">
-              Totok Michael
+            <span className="text-[15px] capitalize font-bold text-gray-800">
+              {user?.email.split("@")[0]}
             </span>
             <span className="text-[12px] text-gray-400 font-medium tracking-tight overflow-hidden text-ellipsis whitespace-nowrap max-w-37.5">
-              tmichael20@gmail.com
+              {user?.email}
             </span>
           </div>
         </div>
