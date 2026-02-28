@@ -92,7 +92,7 @@ To run this project locally, follow these steps:
    Create a `.env` file in the root directory and add your API URL:
 
    ```env
-   VITE_API_URL=https://task-api-eight-flax.vercel.app
+   VITE_API_URL=********************
    ```
 
 4. **Run the development server:**
