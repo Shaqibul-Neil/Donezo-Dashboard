@@ -1,13 +1,16 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { motion } from "framer-motion";
 import { Mail, Lock, ArrowRight } from "lucide-react";
 import Button from "../../components/button/Button";
-import LightPillar from "../../components/animations/LightPillar";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import useAuth from "../../hooks/auth/useAuth";
 import { useLocation, useNavigate } from "react-router";
 import { toast } from "sonner";
+
+const LightPillar = lazy(
+  () => import("../../components/animations/LightPillar"),
+);
 
 const Login = () => {
   const {
@@ -65,20 +68,22 @@ const Login = () => {
     <div className="min-h-screen w-full relative overflow-hidden flex items-center justify-center p-6 selection:bg-[#006442] selection:text-white bg-[#FAFBFC]">
       {/* High-Motion Background Animation */}
       <div className="absolute inset-0 z-10">
-        <LightPillar
-          topColor="#006442"
-          bottomColor="#74C29B"
-          intensity={0.6} // Slightly lower intensity for white background elegance
-          rotationSpeed={0.3}
-          glowAmount={0.002}
-          pillarWidth={3}
-          pillarHeight={0.4}
-          noiseIntensity={0.5}
-          pillarRotation={25}
-          interactive={false}
-          mixBlendMode="multiply"
-          quality="high"
-        />
+        <Suspense fallback={<div className="bg-[#FAFBFC]" />}>
+          <LightPillar
+            topColor="#006442"
+            bottomColor="#74C29B"
+            intensity={0.6} // Slightly lower intensity for white background elegance
+            rotationSpeed={0.3}
+            glowAmount={0.002}
+            pillarWidth={3}
+            pillarHeight={0.4}
+            noiseIntensity={0.5}
+            pillarRotation={25}
+            interactive={false}
+            mixBlendMode="multiply"
+            quality="high"
+          />
+        </Suspense>
         {/* Transparent layering for depth */}
       </div>
 

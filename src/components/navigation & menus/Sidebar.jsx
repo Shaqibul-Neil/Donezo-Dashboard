@@ -15,11 +15,13 @@ import Button from "../button/Button";
 import downloadImg from "../../assets/download.webp";
 import useAuth from "../../hooks/auth/useAuth";
 import { toast } from "sonner";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const Sidebar = () => {
   const { logout } = useAuth();
+  const navigate = useNavigate();
   const handleLogout = () => {
+    navigate("/", { replace: true });
     toast.success("Logged out Successfully");
     logout();
   };
@@ -58,7 +60,6 @@ const Sidebar = () => {
       icon: <LogOut size={20} />,
       label: "Logout",
       onClick: handleLogout,
-      path: "/a",
     },
   ];
 
@@ -96,9 +97,10 @@ const Sidebar = () => {
           {generalItems.map((item, index) => (
             <SidebarLinks
               key={index}
-              to={item.path}
+              to={item?.path}
               label={item.label}
               icon={item.icon}
+              onClick={item?.onClick}
             />
           ))}
         </nav>
