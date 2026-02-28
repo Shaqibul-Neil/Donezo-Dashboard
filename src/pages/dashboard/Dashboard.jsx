@@ -13,7 +13,7 @@ import UserSection from "../../components/dashboard/UserSection";
 import ProgressSection from "../../components/dashboard/ProgressSection";
 import TimeTracker from "../../components/dashboard/TimeTracker";
 import Button from "../../components/button/Button";
-import SidePanel from "../../components/dashboard/Sidepanel";
+import SidePanel from "../../components/dashboard/SidePanel";
 
 // Component Level Lazy Loading (For Optimization)
 const AddProductsForm = lazy(
