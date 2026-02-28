@@ -6,7 +6,7 @@ import { Plus, Crown, Rocket, BotMessageSquare, ChartLine } from "lucide-react";
 import ListHeader from "../headers/ListHeader";
 import AddProductsForm from "../forms/AddProductsForm";
 
-const ProductSection = memo(({ products, openPanel, closePanel }) => {
+const ProductSection = memo(({ products = [], openPanel, closePanel }) => {
   const iconConfig = [
     { icon: Crown, color: "text-blue-500" },
     { icon: Rocket, color: "text-teal-500" },

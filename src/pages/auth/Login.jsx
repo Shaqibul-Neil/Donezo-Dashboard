@@ -27,7 +27,7 @@ const Login = () => {
         email: data.email.toLowerCase(),
         password: data.password,
       };
-      toast.promise(
+      await toast.promise(
         axios.post(`${import.meta.env.VITE_API_URL}/api/login`, userData),
         {
           loading: "Authenticating...",

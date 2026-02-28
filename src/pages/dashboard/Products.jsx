@@ -1,7 +1,12 @@
 import React from "react";
+import WorkInProgress from "../../components/miscellaneous/WorkInProgress";
 
 const Products = () => {
-  return <div>Products</div>;
+  return (
+    <div>
+      <WorkInProgress />
+    </div>
+  );
 };
 
 export default Products;

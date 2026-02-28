@@ -41,7 +41,7 @@ const router = createBrowserRouter([
         <DashboardLayout />
       </PrivateRoute>
     ),
-    errorElement: <NotFound />,
+    // errorElement: <NotFound />,
     children: [
       {
         index: true,
@@ -63,7 +63,7 @@ const router = createBrowserRouter([
         path: "calender",
         element: (
           <Suspense fallback={<Loading />}>
-            <Calender />,
+            <Calender />
           </Suspense>
         ),
       },
@@ -106,6 +106,10 @@ const router = createBrowserRouter([
   {
     path: "/unauthorized",
     element: <Unauthorized />,
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
 

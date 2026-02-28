@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import SectionHeader from "../headers/SectionHeader";
 import AnalyticsBarChart from "../chart/AnalyticsBarChart";
 
-const AnalyticsSection = memo(({ analytics }) => {
+const AnalyticsSection = memo(({ analytics = [] }) => {
   return (
     <motion.div
       className="box-style space-y-4"

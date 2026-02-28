@@ -4,7 +4,7 @@ import SectionHeader from "../headers/SectionHeader";
 import { sumOfItems } from "../../lib/utils";
 import ConversionPieChart from "../chart/ConversionPieChart";
 
-const ProgressSection = memo(({ analytics }) => {
+const ProgressSection = memo(({ analytics = [] }) => {
   const { conversionRate, chartData } = useMemo(() => {
     const views = sumOfItems(analytics, "views");
     const clicks = sumOfItems(analytics, "clicks");

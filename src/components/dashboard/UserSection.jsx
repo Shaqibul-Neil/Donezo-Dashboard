@@ -7,7 +7,7 @@ import StatusBadge from "../miscellaneous/StatusBadge";
 import ListHeader from "../headers/ListHeader";
 import AddUserForm from "../forms/AddUserForm";
 
-const UserSection = memo(({ users, openPanel, closePanel }) => {
+const UserSection = memo(({ users = [], openPanel, closePanel }) => {
   return (
     <motion.div
       className="box-style space-y-4"
